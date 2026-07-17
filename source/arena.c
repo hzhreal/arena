@@ -48,7 +48,7 @@ ArenaContext *arena_create(size_t chunksize, size_t chunks)
 	}
 
 	cur = ctx->head;
-	for (i = 0; i < chunks - 2; i++) {
+	for (i = 0; i <= chunks - 2; i++) {
 		fill_node(cur, chunksize);
 		node = alloc_node();
 		node->prev = cur;
@@ -111,9 +111,8 @@ void *arena_alloc(ArenaContext *ctx, size_t size, size_t align)
 	ARENA_ASSERT(ctx != NULL && ctx->head != NULL);
 	ARENA_ASSERT(IS_POS_POW_OF_TWO(align));
 
-	if (size == 0) {
+	if (size == 0)
 		return NULL;
-	}
 
 	ArenaNode *head = ctx->head;
 	ArenaNode *i;
@@ -132,3 +131,4 @@ void *arena_alloc(ArenaContext *ctx, size_t size, size_t align)
 	arena_push(ctx, size);
 	return ctx->tail->d;
 }
+

@@ -41,3 +41,4 @@ void *arena_alloc(ArenaContext *ctx, size_t size, size_t align);
 	(type *)arena_alloc(ctx, sizeof(type) * count, alignof(type))
 
 #endif // ARENA_H
+
